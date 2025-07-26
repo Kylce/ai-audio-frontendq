@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -73,11 +72,7 @@
           document.getElementById("result").textContent = "❌ خطأ: " + data.error;
         } else {
           document.getElementById("result").textContent =
-            "📃 النص:
-" + data.text + "
-
-🧠 التحليل:
-" + data.analysis;
+            "📃 النص:\\n" + data.text + "\\n\\n🧠 التحليل:\\n" + data.analysis;
         }
       } catch (err) {
         document.getElementById("result").textContent = "❌ حدث خطأ في الاتصال بالخادم.";
