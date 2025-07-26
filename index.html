@@ -50,12 +50,16 @@
 
   <script>
     async function analyzeAudio() {
+      console.log("🎯 بدأ التحليل");
+
       const fileInput = document.getElementById("audioInput");
       const file = fileInput.files[0];
       if (!file) {
         alert("يرجى اختيار ملف صوتي.");
         return;
       }
+
+      console.log("📤 جارٍ رفع الملف:", file.name);
 
       const formData = new FormData();
       formData.append("audio", file);
@@ -67,7 +71,10 @@
           method: "POST",
           body: formData
         });
+
         const data = await response.json();
+        console.log("✅ الرد:", data);
+
         if (data.error) {
           document.getElementById("result").textContent = "❌ خطأ: " + data.error;
         } else {
@@ -75,6 +82,7 @@
             "📃 النص:\\n" + data.text + "\\n\\n🧠 التحليل:\\n" + data.analysis;
         }
       } catch (err) {
+        console.error("❌ خطأ أثناء الاتصال:", err);
         document.getElementById("result").textContent = "❌ حدث خطأ في الاتصال بالخادم.";
       }
     }
